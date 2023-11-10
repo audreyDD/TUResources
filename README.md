@@ -1,6 +1,6 @@
-# play-scalajs-slinky
-
-This is my starter project for things that involve Play using Scala.js and
-the Slinky React binding. I'm using this as the starter for student code in
-Web Apps Spring 2021.
-
+# WebApps_TUResources
+Using Play Framework
+If using Pandora (w/Postgres)
+  We need to ask Lewis to make a Pandora machine/space for the project
+If using AWS (w/MongoDB?)
+  We need to figure out how to do it (Audrey and? Ashley know MongoDB)
