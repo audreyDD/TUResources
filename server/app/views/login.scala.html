@@ -1,0 +1,31 @@
+
+@()(implicit request: MessagesRequestHeader, flash: Flash)
+
+@main("Login") {
+	
+	<form method="post" action="@routes.Resources.validLogin">
+		@helper.CSRF.formField
+		<h3>Login</h3>
+		<br>
+		Username: <input type="text" name="username" id="username-login"></input>
+		<br>
+		Password: <input type="password" name="password" id="password-login"></input>
+		<br>
+		<input type="submit"></input>
+	</form>
+
+	<!-- <form method="post" action="@routes.Messages.createUser">
+		@helper.CSRF.formField
+		<h3>Create User</h3>
+		<br>
+		Username: <input type="text" name="username" id="username-create"></input>
+		<br>
+		Password: <input type="password" name="password" id="password-create"></input>
+		<br>
+		<input type="submit"></input>
+	</form> -->
+
+
+
+
+}
