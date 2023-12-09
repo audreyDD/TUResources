@@ -1,0 +1,51 @@
+@()(implicit request: RequestHeader, flash: Flash)
+
+@main("Login") {
+    <div id="contents">Json & Ajax</div>
+
+    <div id="home-page" hidden>
+        <h2>Homepage</h2>
+        <button onclick="openCategory('academic')">Academic</button>
+        <button onclick="openCategory('health')">Health</button>
+        <button onclick="openCategory('financial')">Financial</button>
+        <button onclick="openCategory('emergency')">Emergency</button>
+    </div>
+
+    <div id="login-section">
+        <h2>Login</h2>
+
+        Username: <input type="text" name="username" id="username-login"></input>
+        <br>
+        Password: <input type="password" name="password" id="password-login"></input>
+        <br>
+        <button onclick="login()">Login</button>
+    </div>
+
+    <div id="resource-page" hidden>
+        <style>
+            table, th, td {
+              border:1px solid black;
+            }
+        </style>
+        <h2 id="currentResource"></h2>
+        <br />
+        <table id="resource-table"></table>
+
+        <button onclick="back()">Back to homepage</button>
+    </div>
+
+    <div id="schedule-page" hidden>
+        <h2>Book an appointment!</h2>
+        <table id="week-table"></table>
+    </div>
+
+
+    <div id="logout" hidden></div>
+
+    <input type="hidden" id="csrfToken" value="@helper.CSRF.getToken.value">
+    <input type="hidden" id="validateRoute" value="@routes.Application.validate">
+    <input type="hidden" id="openCategoryRoute" value="@routes.Application.openCategory">
+    <input type="hidden" id="scheduleRoute" value="@routes.Application.schedule">
+
+    <script src="@routes.Assets.versioned("javascript/website.js")"></script>  
+}

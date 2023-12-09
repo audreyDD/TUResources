@@ -4,6 +4,11 @@
 
 # Home page
 GET        /                             controllers.Application.index
+GET        /load                         controllers.Application.load
+POST       /validate                     controllers.Application.validate
+POST       /openCategory                 controllers.Application.openCategory
+POST       /schedule                     controllers.Application.schedule
+
 
 # Prefix must match `play.assets.urlPrefix`
 GET        /assets/*file                 controllers.Assets.at(file)
