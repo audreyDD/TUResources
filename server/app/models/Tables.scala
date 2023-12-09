@@ -1,3 +1,4 @@
+
 package models
 // AUTO-GENERATED Slick data model
 /** Stand-alone Slick data model for immediate use */
@@ -47,3 +48,4 @@ trait Tables {
   /** Collection-like TableQuery object for table Resources */
   lazy val Resources = new TableQuery(tag => new Resources(tag))
 }
+
