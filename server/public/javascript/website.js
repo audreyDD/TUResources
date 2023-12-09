@@ -17,15 +17,21 @@ function login() {
     }).then(res => res.json()).then(data => {
         if(data) {
             document.getElementById("login-section").hidden = true
-            document.getElementById("home-page").hidden = false
+            document.getElementById('home-page').style.display = 'flex';
             document.getElementById("logout").hidden = false
         } else {
             console.log("failed validate")
         }
     })
 }
+function showHomePage() {
+    document.getElementById('login-section').style.display = 'none';
+    document.getElementById('home-page').style.display = 'flex';
+}
+
 
 function openCategory(category) {
+    hideHomePage()
     const resourceTable = document.getElementById("resource-table")
     resourceTable.innerHTML = ""
 
@@ -91,8 +97,14 @@ function openCategory(category) {
 }
 
 function back() {
-    document.getElementById("home-page").hidden = false
+    document.getElementById("home-page").style.display = 'flex'
     document.getElementById("resource-page").hidden = true
+}
+
+function hideHomePage() {
+    document.getElementById("home-page").style.display = 'none'
+    document.getElementById("resource-page").hidden = false
+    
 }
 
 function schedule(category, resourceName) {

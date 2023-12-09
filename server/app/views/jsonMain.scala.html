@@ -1,17 +1,20 @@
 @()(implicit request: RequestHeader, flash: Flash)
 
 @main("Login") {
-    <div id="contents">Json & Ajax</div>
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/loginPage.css")">
+    <!-- <div id="contents">Json & Ajax</div> -->
+
 
     <div id="home-page" hidden>
-        <h2>Homepage</h2>
-        <button onclick="openCategory('academic')">Academic</button>
-        <button onclick="openCategory('health')">Health</button>
-        <button onclick="openCategory('financial')">Financial</button>
-        <button onclick="openCategory('emergency')">Emergency</button>
+        <h3>Trinity University Resources</h3>
+        <div class="clickable-div" onclick="openCategory('academic')">Academic</div>
+        <div class="clickable-div" onclick="openCategory('health')">Health</div>
+        <div class="clickable-div" onclick="openCategory('financial')">Financial</div>
+        <div class="clickable-div" onclick="openCategory('emergency')">Emergency</div>
     </div>
+    
 
-    <div id="login-section">
+    <div id="login-section"  >
         <h2>Login</h2>
 
         Username: <input type="text" name="username" id="username-login"></input>
@@ -22,11 +25,6 @@
     </div>
 
     <div id="resource-page" hidden>
-        <style>
-            table, th, td {
-              border:1px solid black;
-            }
-        </style>
         <h2 id="currentResource"></h2>
         <br />
         <table id="resource-table"></table>
