@@ -1,3 +1,4 @@
+
 package models
 //Rerunning runMain models.CodeGen will recreate Tables
 object CodeGen extends App {
