@@ -13,3 +13,12 @@ POST       /schedule                     controllers.Application.schedule
 # Prefix must match `play.assets.urlPrefix`
 GET        /assets/*file                 controllers.Assets.at(file)
 GET        /versionedAssets/*file        controllers.Assets.versioned(path="/public", file: Asset)
+
+GET        /login                        controllers.TUResources.login
+POST       /validLogin                   controllers.TUResources.validLogin
+
+GET        /homePage                     controllers.TUResources.home
+GET        /academic                     controllers.TUResources.academic
+GET        /health                       controllers.TUResources.health
+GET        /financial                    controllers.TUResources.financial
+GET        /emergency                    controllers.TUResources.emergency

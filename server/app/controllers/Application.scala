@@ -57,3 +57,4 @@ class Application @Inject()(cc: ControllerComponents) extends AbstractController
   }
 
 }
+

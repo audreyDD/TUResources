@@ -1,0 +1,34 @@
+@* loginviewslate File *@
+@()(implicit request: MessagesRequestHeader, flash: Flash)
+
+@main("Home Page") {
+
+	<link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/homePage.css")">
+	
+    <a class="login-button" href="@routes.TUResources.login">Login</a>
+
+	<div class="container">
+
+		<h3>Trinity University Resources</h3>
+		<div class="clickable-div" onclick="window.location.href='@routes.TUResources.academic'">
+            Academic
+        </div>
+        <div class="clickable-div" onclick="window.location.href='@routes.TUResources.health'">
+            Health
+        </div>
+        <div class="clickable-div" onclick="window.location.href='@routes.TUResources.financial'">
+            Financial
+        </div>
+        <div class="clickable-div" onclick="window.location.href='@routes.TUResources.emergency'">
+            Emergency
+        </div>
+    </div>	
+
+
+    <script>
+        function expandDiv(element) {
+            // Toggle the height of the clicked div
+            element.style.height = (element.offsetHeight === 50 ? "100px" : "50px");
+        }
+    </script>
+}
