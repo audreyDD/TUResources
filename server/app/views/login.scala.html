@@ -1,0 +1,18 @@
+@* loginviewslate File *@
+@()(implicit request: MessagesRequestHeader, flash: Flash)
+
+@main("Login") {
+
+	<link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/loginPage.css")">
+	
+	<form method="post" action="@routes.TUResources.validLogin">
+		@helper.CSRF.formField
+		<h3>Login</h3>
+		<br>
+		Username: <input type="text" name="username" id="username-login"></input>
+		<br>
+		Password: <input type="password" name="password" id="password-login"></input>
+		<br>
+		<input type="submit"></input>
+	</form>
+}
