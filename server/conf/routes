@@ -15,7 +15,8 @@ GET        /assets/*file                 controllers.Assets.at(file)
 GET        /versionedAssets/*file        controllers.Assets.versioned(path="/public", file: Asset)
 
 GET        /login                        controllers.TUResources.login
-POST       /validLogin                   controllers.TUResources.validLogin
+POST       /validateTU                   controllers.TUResources.validateTU
+POST        /createUserTU               controllers.TUResources.createUserTU
 
 GET        /homePage                     controllers.TUResources.home
 GET        /academic                     controllers.TUResources.academic

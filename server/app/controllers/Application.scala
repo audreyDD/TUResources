@@ -11,8 +11,8 @@ import models.UserData
 @Singleton
 class Application @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
   
-  implicit val userDataReads = Json.reads[UserData]
-  implicit val oneResourceReads = Json.reads[OneResource]
+  implicit val userDataReads:Reads[UserData] = Json.reads[UserData]
+  implicit val oneResourceReads:Reads[OneResource] = Json.reads[OneResource]
 
   def withJsonBody[A](f: A => Result)(implicit request: Request[AnyContent], reads: Reads[A]) = {
         request.body.asJson.map { body =>
@@ -32,6 +32,7 @@ class Application @Inject()(cc: ControllerComponents) extends AbstractController
   }
 
   def validate = Action { implicit request =>
+    println("validate in Application")
     withJsonBody[UserData] { ud =>
             if(InMemoryModel.validateUser(ud.username, ud.password)) {
                 Ok(Json.toJson(true))
