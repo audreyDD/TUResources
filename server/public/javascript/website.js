@@ -9,7 +9,7 @@ const scheduleRoute = document.getElementById("scheduleRoute").value
 function login() {
     const username = document.getElementById("username-login").value
     const password = document.getElementById("password-login").value
-
+    console.log("login() in js");
     fetch(validateRoute, {
         method: 'POST',
         headers: {'Content-Type': 'application/json', 'Csrf-Token': csrfToken},

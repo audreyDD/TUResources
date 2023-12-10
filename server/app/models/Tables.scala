@@ -53,18 +53,19 @@ trait Tables {
   /** Entity class storing rows of table Users
    *  @param id Database column id SqlType(serial), AutoInc, PrimaryKey
    *  @param username Database column username SqlType(varchar), Length(20,true)
-   *  @param password Database column password SqlType(varchar), Length(200,true) */
-  case class UsersRow(id: Int, username: String, password: String)
+   *  @param password Database column password SqlType(varchar), Length(200,true)
+   *  @param admin Database column admin SqlType(bool), Default(None) */
+  case class UsersRow(id: Int, username: String, password: String, admin: Option[Boolean] = None)
   /** GetResult implicit for fetching UsersRow objects using plain SQL queries */
-  implicit def GetResultUsersRow(implicit e0: GR[Int], e1: GR[String]): GR[UsersRow] = GR{
+  implicit def GetResultUsersRow(implicit e0: GR[Int], e1: GR[String], e2: GR[Option[Boolean]]): GR[UsersRow] = GR{
     prs => import prs._
-    UsersRow.tupled((<<[Int], <<[String], <<[String]))
+    UsersRow.tupled((<<[Int], <<[String], <<[String], <<?[Boolean]))
   }
   /** Table description of table users. Objects of this class serve as prototypes for rows in queries. */
   class Users(_tableTag: Tag) extends profile.api.Table[UsersRow](_tableTag, "users") {
-    def * = (id, username, password).<>(UsersRow.tupled, UsersRow.unapply)
+    def * = (id, username, password, admin).<>(UsersRow.tupled, UsersRow.unapply)
     /** Maps whole row to an option. Useful for outer joins. */
-    def ? = ((Rep.Some(id), Rep.Some(username), Rep.Some(password))).shaped.<>({r=>import r._; _1.map(_=> UsersRow.tupled((_1.get, _2.get, _3.get)))}, (_:Any) =>  throw new Exception("Inserting into ? projection not supported."))
+    def ? = ((Rep.Some(id), Rep.Some(username), Rep.Some(password), admin)).shaped.<>({r=>import r._; _1.map(_=> UsersRow.tupled((_1.get, _2.get, _3.get, _4)))}, (_:Any) =>  throw new Exception("Inserting into ? projection not supported."))
 
     /** Database column id SqlType(serial), AutoInc, PrimaryKey */
     val id: Rep[Int] = column[Int]("id", O.AutoInc, O.PrimaryKey)
@@ -72,6 +73,8 @@ trait Tables {
     val username: Rep[String] = column[String]("username", O.Length(20,varying=true))
     /** Database column password SqlType(varchar), Length(200,true) */
     val password: Rep[String] = column[String]("password", O.Length(200,varying=true))
+    /** Database column admin SqlType(bool), Default(None) */
+    val admin: Rep[Option[Boolean]] = column[Option[Boolean]]("admin", O.Default(None))
   }
   /** Collection-like TableQuery object for table Users */
   lazy val Users = new TableQuery(tag => new Users(tag))

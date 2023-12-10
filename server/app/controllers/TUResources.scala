@@ -7,6 +7,7 @@ import play.api.i18n._
 import play.api.data.Forms._
 import akka.http.javadsl.model.ws.Message
 
+import play.api.libs.json._
 import models.DataModel
 import models._
 import play.api.db.slick.DatabaseConfigProvider
@@ -23,16 +24,16 @@ class TUResources @Inject()(protected val dbConfigProvider: DatabaseConfigProvid
 
     private val model = new DataModel(db)
 
-    implicit val userDataReads = Json.reads[UserData]
-    implicit val oneResourceReads = Json.reads[OneResource]
+    implicit val userDataReads:Reads[UserData] = Json.reads[UserData]
+    implicit val oneResourceReads:Reads[OneResource] = Json.reads[OneResource]
 
-    def withJsonBody[A](f: A => Result)(implicit request: Request[AnyContent], reads: Reads[A]) = {
+    def withJsonBody[A](f: A => Future[Result])(implicit request: Request[AnyContent], reads: Reads[A]) = {
         request.body.asJson.map { body =>
             Json.fromJson[A](body) match {
                 case JsSuccess(a, path) => f(a)
-                case e @ JsError(_) => Redirect(routes.Application.load)
+                case e @ JsError(_) => Future.successful(Redirect(routes.Application.load))
             }
-        }.getOrElse(Redirect(routes.Application.load))
+        }.getOrElse(Future.successful(Redirect(routes.Application.load)))
     }
 
     def login = Action { implicit request =>
@@ -41,7 +42,8 @@ class TUResources @Inject()(protected val dbConfigProvider: DatabaseConfigProvid
     
     def validLogin = TODO
 
-    def validate = Action.async { implicit request =>
+    def validateTU = Action.async { implicit request =>
+        println("validate in TUResources")
     withJsonBody[UserData] { ud =>
         model.validateUser(ud.username, ud.password).map { ouserId =>
         ouserId match {
