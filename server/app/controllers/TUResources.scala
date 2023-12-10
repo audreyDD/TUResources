@@ -25,6 +25,7 @@ class TUResources @Inject()(protected val dbConfigProvider: DatabaseConfigProvid
     private val model = new DataModel(db)
 
     implicit val userDataReads:Reads[UserData] = Json.reads[UserData]
+    implicit val userDataReads:Reads[User] = Json.reads[User]
     implicit val ResourceReads:Reads[Resource] = Json.reads[Resource]
     implicit val ResourceWrites:Writes[Resource] = Json.writes[Resource]
 
@@ -50,7 +51,7 @@ class TUResources @Inject()(protected val dbConfigProvider: DatabaseConfigProvid
                 ouserId match {
                     case Some(userid) =>
                         Ok(Json.toJson(true))
-                        .withSession("username" -> ud.username, "csrfToken" -> play.filters.csrf.CSRF.getToken.map(_.value).getOrElse(""))
+                        .withSession("username" -> ud.username, "userid"->userid.toString,"csrfToken" -> play.filters.csrf.CSRF.getToken.map(_.value).getOrElse(""))
                     case None =>
                         Ok(Json.toJson(false))
                 }
@@ -65,7 +66,7 @@ class TUResources @Inject()(protected val dbConfigProvider: DatabaseConfigProvid
                 ouserId match {
                     case Some(userid) =>
                         Ok(Json.toJson(true))
-                        .withSession("username" -> ud.username, "csrfToken" -> play.filters.csrf.CSRF.getToken.map(_.value).getOrElse(""))
+                        .withSession("username" -> ud.username, "userid"->userid.toString,"csrfToken" -> play.filters.csrf.CSRF.getToken.map(_.value).getOrElse(""))
                     case None =>
                         println("createUser in TUResources failed")
                         Ok(Json.toJson(false))

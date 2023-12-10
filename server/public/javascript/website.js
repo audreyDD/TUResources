@@ -113,7 +113,7 @@ function openCategory(category) {
                 tr.appendChild(hoursCell)
 
                 if(resource.schedule) {
-                    console.log("is there a button?");
+                    //console.log("is there a button?");
                     const scheduleBtn = document.createElement("button")
                     const btnName = document.createTextNode(resource.name)
                     scheduleBtn.appendChild(btnName)
@@ -143,6 +143,8 @@ function hideHomePage() {
 }
 
 function schedule(category, resourceName) {
+
+    document.getElementsByTagName("TITLE")[0].text="Scheduling";
     console.log(resourceName)
     document.getElementById("home-page").hidden = true
     document.getElementById("resource-page").hidden = true
