@@ -1,11 +1,11 @@
 @* loginviewslate File *@
-@()(implicit request: MessagesRequestHeader, flash: Flash)
+@()(implicit request: RequestHeader, flash: Flash)
 
 @main("Login") {
 
 	<link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/loginPage.css")">
 	
-	<form method="post" action="@routes.TUResources.validLogin">
+	<form method="post" action="@routes.TUResources.validateTU">
 		@helper.CSRF.formField
 		<h3>Login</h3>
 		<br>
