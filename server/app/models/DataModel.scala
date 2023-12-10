@@ -7,6 +7,7 @@ import scala.concurrent.Future
 
 class DataModel(db: Database)(implicit ec: ExecutionContext) {
     def validateUser(username: String, password: String): Future[Option[Int]] = {
+      println("validateUser() in DataModel")
         val matches = db.run(Users.filter(userRow => userRow.username === username && userRow.password === password).result)
         matches.map(userRows => userRows.headOption.flatMap { userRow =>
             Some(userRow.id)
