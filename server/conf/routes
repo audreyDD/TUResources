@@ -6,7 +6,7 @@
 GET        /                             controllers.Application.index
 GET        /load                         controllers.Application.load
 POST       /validate                     controllers.Application.validate
-POST       /openCategory                 controllers.Application.openCategory
+POST       /openCategory                 controllers.TUResources.openCategory
 POST       /schedule                     controllers.Application.schedule
 
 

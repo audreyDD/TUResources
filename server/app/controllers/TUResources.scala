@@ -57,6 +57,12 @@ class TUResources @Inject()(protected val dbConfigProvider: DatabaseConfigProvid
         }  
   }
     
+  def openCategory = ???/*Action.async { implicit request =>
+      withJsonBody[String] { category =>
+        val resources = DataModel.getResources(category)
+        Ok(Json.toJson(resources))
+      }
+  }*/
 
     def home = Action { implicit request =>
         Ok(views.html.home())

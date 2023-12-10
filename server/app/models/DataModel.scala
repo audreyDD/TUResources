@@ -4,6 +4,7 @@ import slick.jdbc.PostgresProfile.api._
 import scala.concurrent.ExecutionContext
 import models.Tables._
 import scala.concurrent.Future
+import models.UserData._
 
 class DataModel(db: Database)(implicit ec: ExecutionContext) {
     def validateUser(username: String, password: String): Future[Option[Int]] = {
@@ -13,6 +14,12 @@ class DataModel(db: Database)(implicit ec: ExecutionContext) {
             Some(userRow.id)
         })
         
+    }
+
+    def getResources(category:String):Future[Seq[Resource]]={
+      val matches = db.run(Resources.filter(resourceRow => resourceRow.group === category).result)
+      matches.map(items => items.map(item => Resource(item.resource,item.description,item.hours,item.group)))
+
     }
 
     def createUser(username: String, password: String): Future[Option[Int]] = {
