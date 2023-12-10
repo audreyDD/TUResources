@@ -4,7 +4,12 @@
     <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/loginPage.css")">
     <!-- <div id="contents">Json & Ajax</div> -->
 
-
+<!--    
+    <div id="top-right-image-container">
+        <img src="/server/public/images/trinity.webp" alt="TU image" id="top-right-image">
+    </div> -->
+  
+  
     <div id="home-page" hidden>
         <h3>Trinity University Resources</h3>
         <div class="clickable-div" onclick="openCategory('Academic')">Academic</div>
@@ -21,11 +26,12 @@
         Password: <input type="password" name="password" id="password-login"></input>
         <br>
         <button onclick="login()">Login</button>
+        <button onClick= "goToCreateUser()"> Create User</button>
 
         
     </div>
 
-    <div id="create-user-section">
+    <div id="create-user-section" hidden>
         <h2>Create User</h2>
 
         Username: <input type="text" name="username" id="username-create"></input>
@@ -40,7 +46,7 @@
         <br />
         <table id="resource-table"></table>
 
-        <button onclick="back()">Back to homepage</button>
+        <button id="backToHomePage" onclick="back()">Back to homepage</button>
     </div>
 
     <div id="schedule-page" hidden>

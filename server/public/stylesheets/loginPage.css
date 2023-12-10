@@ -15,14 +15,8 @@ body {
     align-items: center;
     height: 100vh;
 } */
-#create-user-section {
-    width: 300px;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
+#create-user-section,
 #login-section {
     width: 300px;
     background: white;
@@ -30,6 +24,14 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+#currentResource {
+    color: #fff;
+    text-align: center;
+    font-size: 40px;
+}
+
+
 
 h2 {
     color: maroon;
@@ -108,24 +110,36 @@ button:hover {
     border-radius: 8px;
     cursor: pointer;
 }
-/* Add this styling for the table */
 table {
-    width: 150%; /* Increase the width */
-    max-width: 1200px; /* Set a maximum width to keep it from becoming too wide */
-    margin: 0 auto; /* Center the table */
+    width: 150%;
+    max-width: 1200px;
+    margin: 0 auto;
     border-collapse: collapse;
     margin-bottom: 20px;
-    border-radius: 8px;
-    overflow: hidden;
+    /* overflow: hidden; */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #fff; 
+    border-radius: 30px;
+}
+
+#backToHomePage {
+    top: 20px;
+    right: 20px;
+    background-color: #fff;
+    color: #723130;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    
 }
 
 th, td {
-    border: 1px solid #ddd;
-    padding: 20px; /* Increase the padding for better spacing */
+    border: 1px solid #fff;
+    padding: 20px;
     text-align: left;
     white-space: nowrap;
-    font-size: 18px; /* Increase the font size */
+    font-size: 18px;
 }
 
 th {
@@ -148,13 +162,7 @@ tr:hover {
 td:not(:last-child),
 th:not(:last-child) {
     border-right: 1px solid #fff;
-}
-
-td:last-child,
-th:last-child {
-    border-right: none;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-bottom: 1px solid #fff;
 }
 
 /* Add a subtle transition effect */
@@ -167,3 +175,25 @@ td:hover {
     background-color: #4b1d1d;
     color: #fff;
 }
+
+
+#schedule-page {
+    color: #fff;
+    text-align: center;
+    font-size: 40px;
+}
+
+
+/* #top-right-image-container {
+    position: fixed; 
+    top: 20px; 
+    right: 20px; 
+}
+
+#top-right-image {
+    width: 100px; 
+    height: 100px; 
+    border-radius: 50%; 
+  
+} */
+
