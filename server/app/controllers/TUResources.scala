@@ -44,18 +44,34 @@ class TUResources @Inject()(protected val dbConfigProvider: DatabaseConfigProvid
 
     def validateTU = Action.async { implicit request =>
         println("validate in TUResources")
-    withJsonBody[UserData] { ud =>
-        model.validateUser(ud.username, ud.password).map { ouserId =>
-        ouserId match {
-          case Some(userid) =>
-            Ok(Json.toJson(true))
-              .withSession("username" -> ud.username, "csrfToken" -> play.filters.csrf.CSRF.getToken.map(_.value).getOrElse(""))
-          case None =>
-            Ok(Json.toJson(false))
-        }
-      }
+        withJsonBody[UserData] { ud =>
+            model.validateUser(ud.username, ud.password).map { ouserId =>
+                ouserId match {
+                    case Some(userid) =>
+                        Ok(Json.toJson(true))
+                        .withSession("username" -> ud.username, "csrfToken" -> play.filters.csrf.CSRF.getToken.map(_.value).getOrElse(""))
+                    case None =>
+                        Ok(Json.toJson(false))
+                }
+            }
         }  
-  }
+    }
+
+    def createUserTU = Action.async { implicit request =>
+        println("createUser in TUResources")
+        withJsonBody[UserData] { ud =>
+            model.createUser(ud.username, ud.password).map { ouserId =>
+                ouserId match {
+                    case Some(userid) =>
+                        Ok(Json.toJson(true))
+                        .withSession("username" -> ud.username, "csrfToken" -> play.filters.csrf.CSRF.getToken.map(_.value).getOrElse(""))
+                    case None =>
+                        println("createUser in TUResources failed")
+                        Ok(Json.toJson(false))
+                }
+            }
+        }  
+    }
     
   def openCategory = ???/*Action.async { implicit request =>
       withJsonBody[String] { category =>

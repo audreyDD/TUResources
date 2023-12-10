@@ -16,15 +16,21 @@ class DataModel(db: Database)(implicit ec: ExecutionContext) {
         
     }
 
-    def getResources(category:String):Future[Seq[Resource]]={
+    def getResources(category:String):Future[Seq[Resource]] = ???/*{
       val matches = db.run(Resources.filter(resourceRow => resourceRow.group === category).result)
       matches.map(items => items.map(item => Resource(item.resource,item.description,item.hours,item.group)))
 
-    }
+    }*/
 
     def createUser(username: String, password: String): Future[Option[Int]] = {
-      /*
+      println("createUser() in DataModel")
         val matches = db.run(Users.filter(userRow => userRow.username === username).result)
+
+      /*  matches.map(userRows => userRows.headOption.flatMap { userRow =>
+            Some(userRow.id)
+        })
+      
+        val matches = db.run(Users.filter(userRow => userRow.username === username).result)*/
         matches.flatMap { userRows =>
             if (userRows.isEmpty) {
               db.run(Users += UsersRow(-1, username, password))
@@ -34,7 +40,7 @@ class DataModel(db: Database)(implicit ec: ExecutionContext) {
                   else Future.successful(None)
                 }
             } else Future.successful(None)
-        }*/
-        ???
+        }
+        
     }
 }

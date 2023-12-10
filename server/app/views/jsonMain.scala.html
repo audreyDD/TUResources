@@ -21,6 +21,18 @@
         Password: <input type="password" name="password" id="password-login"></input>
         <br>
         <button onclick="login()">Login</button>
+
+        
+    </div>
+
+    <div id="create-user-section">
+        <h2>Create User</h2>
+
+        Username: <input type="text" name="username" id="username-create"></input>
+        <br>
+        Password: <input type="password" name="password" id="password-create"></input>
+        <br>
+        <button onclick="createUser()">Create User</button>
     </div>
 
     <div id="resource-page" hidden>
@@ -41,7 +53,8 @@
 
     <input type="hidden" id="csrfToken" value="@helper.CSRF.getToken.value">
     <input type="hidden" id="validateRoute" value="@routes.TUResources.validateTU">
-    <input type="hidden" id="openCategoryRoute" value="@routes.TUResources.openCategory">
+    <input type="hidden" id="createUserRoute" value="@routes.TUResources.createUserTU">
+    <input type="hidden" id="openCategoryRoute" value="@routes.Application.openCategory">
     <input type="hidden" id="scheduleRoute" value="@routes.Application.schedule">
 
     <script src="@routes.Assets.versioned("javascript/website.js")"></script>  

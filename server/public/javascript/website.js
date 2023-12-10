@@ -2,13 +2,14 @@
 
 const csrfToken = document.getElementById("csrfToken").value
 const validateRoute = document.getElementById("validateRoute").value
+const createUserRoute = document.getElementById("createUserRoute").value
 //const logoutRoute = document.getElementById("logoutRoute").value
 const openCategoryRoute = document.getElementById("openCategoryRoute").value
 const scheduleRoute = document.getElementById("scheduleRoute").value
 
 function login() {
-    const username = document.getElementById("username-login").value
-    const password = document.getElementById("password-login").value
+    const username = document.getElementById("username-login").value;
+    const password = document.getElementById("password-login").value;
     console.log("login() in js");
     fetch(validateRoute, {
         method: 'POST',
@@ -16,16 +17,37 @@ function login() {
         body: JSON.stringify({ username, password })
     }).then(res => res.json()).then(data => {
         if(data) {
-            document.getElementById("login-section").hidden = true
+            document.getElementById("login-section").hidden = true;
+            document.getElementById("create-user-section").hidden = true;
             document.getElementById('home-page').style.display = 'flex';
-            document.getElementById("logout").hidden = false
+            document.getElementById("logout").hidden = false;
         } else {
-            console.log("failed validate")
+            console.log("failed validate");
+        }
+    })
+}
+function createUser() {
+    const username = document.getElementById("username-create").value;
+    const password = document.getElementById("password-create").value;
+    console.log("createUser() in js");
+    fetch(createUserRoute, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', 'Csrf-Token': csrfToken},
+        body: JSON.stringify({ username, password })
+    }).then(res => res.json()).then(data => {
+        if(data) {
+            document.getElementById("login-section").hidden = true;
+            document.getElementById("create-user-section").hidden = true;
+            document.getElementById('home-page').style.display = 'flex';
+            document.getElementById("logout").hidden = false;
+        } else {
+            console.log("failed to create");
         }
     })
 }
 function showHomePage() {
     document.getElementById('login-section').style.display = 'none';
+    document.getElementById('create-user-section').style.display = 'none';
     document.getElementById('home-page').style.display = 'flex';
 }
 
