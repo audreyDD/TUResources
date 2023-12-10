@@ -21,6 +21,7 @@ function login() {
             document.getElementById("create-user-section").hidden = true;
             document.getElementById('home-page').style.display = 'flex';
             document.getElementById("logout").hidden = false;
+            document.getElementsByTagName("TITLE")[0].text="Resources";
         } else {
             console.log("failed validate");
         }
@@ -40,12 +41,15 @@ function createUser() {
             document.getElementById("create-user-section").hidden = true;
             document.getElementById('home-page').style.display = 'flex';
             document.getElementById("logout").hidden = false;
+            document.getElementsByTagName("TITLE")[0].text="Resources";
         } else {
             console.log("failed to create");
         }
     })
 }
 function showHomePage() {
+
+    document.getElementsByTagName("TITLE")[0].text="Resources";
     document.getElementById('login-section').style.display = 'none';
     document.getElementById('create-user-section').style.display = 'none';
     document.getElementById('home-page').style.display = 'flex';
@@ -53,6 +57,7 @@ function showHomePage() {
 
 
 function openCategory(category) {
+    console.log("openCategory in js");
     hideHomePage()
     const resourceTable = document.getElementById("resource-table")
     resourceTable.innerHTML = ""
@@ -69,6 +74,9 @@ function openCategory(category) {
     }).then(res => res.json()).then(resources => {
         //TODO: Make button to "schedule" each resource
         if (resources) {
+            document.getElementsByTagName("TITLE")[0].text=category;
+            
+            console.log(resources);
             document.getElementById("home-page").hidden = true
             document.getElementById("resource-page").hidden = false
             
@@ -85,28 +93,31 @@ function openCategory(category) {
             resourceTable.appendChild(trSourceHeader)
 
             for(const resource of resources) {
+                //console.log("here is a resource");
+                console.log(resource);
                 let tr = document.createElement("tr")
     
-                let resourceName = document.createTextNode(resource[0])
+                let resourceName = document.createTextNode(resource.name)
                 const resourceNameCell = document.createElement("td")
                 resourceNameCell.appendChild(resourceName)
                 tr.appendChild(resourceNameCell)
     
-                let description = document.createTextNode(resource[1])
+                let description = document.createTextNode(resource.description)
                 let descriptionCell = document.createElement("td")
                 descriptionCell.appendChild(description)
                 tr.appendChild(descriptionCell)
     
-                let hours = document.createTextNode(resource[2])
+                let hours = document.createTextNode(resource.hours)
                 let hoursCell = document.createElement("td")
                 hoursCell.appendChild(hours)
                 tr.appendChild(hoursCell)
 
-                if(resource[3] == "1") {
+                if(resource.schedule) {
+                    console.log("is there a button?");
                     const scheduleBtn = document.createElement("button")
-                    const btnName = document.createTextNode(resource[0])
+                    const btnName = document.createTextNode(resource.name)
                     scheduleBtn.appendChild(btnName)
-                    scheduleBtn.setAttribute("onclick", `schedule('${category}','${resource[0]}')`)
+                    scheduleBtn.setAttribute("onclick", `schedule('${category}','${resource.name}')`)
                     tr.appendChild(scheduleBtn)
                 }
     
@@ -119,6 +130,8 @@ function openCategory(category) {
 }
 
 function back() {
+    
+    document.getElementsByTagName("TITLE")[0].text="Resources";
     document.getElementById("home-page").style.display = 'flex'
     document.getElementById("resource-page").hidden = true
 }

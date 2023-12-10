@@ -25,7 +25,8 @@ class TUResources @Inject()(protected val dbConfigProvider: DatabaseConfigProvid
     private val model = new DataModel(db)
 
     implicit val userDataReads:Reads[UserData] = Json.reads[UserData]
-    implicit val oneResourceReads:Reads[OneResource] = Json.reads[OneResource]
+    implicit val ResourceReads:Reads[Resource] = Json.reads[Resource]
+    implicit val ResourceWrites:Writes[Resource] = Json.writes[Resource]
 
     def withJsonBody[A](f: A => Future[Result])(implicit request: Request[AnyContent], reads: Reads[A]) = {
         request.body.asJson.map { body =>
@@ -73,12 +74,14 @@ class TUResources @Inject()(protected val dbConfigProvider: DatabaseConfigProvid
         }  
     }
     
-  def openCategory = ???/*Action.async { implicit request =>
+  def openCategory = Action.async { implicit request =>
+    println("openCategory in TUResources")
       withJsonBody[String] { category =>
-        val resources = DataModel.getResources(category)
-        Ok(Json.toJson(resources))
+        val resources = model.getResources(category)
+        //println(resources)
+        resources.map(items =>  Ok(Json.toJson(items)))
       }
-  }*/
+  }
 
     def home = Action { implicit request =>
         Ok(views.html.home())

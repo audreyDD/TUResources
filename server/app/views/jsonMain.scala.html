@@ -7,10 +7,9 @@
 
     <div id="home-page" hidden>
         <h3>Trinity University Resources</h3>
-        <div class="clickable-div" onclick="openCategory('academic')">Academic</div>
-        <div class="clickable-div" onclick="openCategory('health')">Health</div>
-        <div class="clickable-div" onclick="openCategory('emergency')">Emergency</div>
-        <div class="clickable-div" onclick="openCategory('financial')">Finanacial</div>
+        <div class="clickable-div" onclick="openCategory('Academic')">Academic</div>
+        <div class="clickable-div" onclick="openCategory('Health')">Health</div>
+        <div class="clickable-div" onclick="openCategory('Safety')">Safety</div>
     </div>
     
 
@@ -55,7 +54,7 @@
     <input type="hidden" id="csrfToken" value="@helper.CSRF.getToken.value">
     <input type="hidden" id="validateRoute" value="@routes.TUResources.validateTU">
     <input type="hidden" id="createUserRoute" value="@routes.TUResources.createUserTU">
-    <input type="hidden" id="openCategoryRoute" value="@routes.Application.openCategory">
+    <input type="hidden" id="openCategoryRoute" value="@routes.TUResources.openCategory">
     <input type="hidden" id="scheduleRoute" value="@routes.Application.schedule">
 
     <script src="@routes.Assets.versioned("javascript/website.js")"></script>  
