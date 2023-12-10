@@ -25,7 +25,7 @@ class TUResources @Inject()(protected val dbConfigProvider: DatabaseConfigProvid
     private val model = new DataModel(db)
 
     implicit val userDataReads:Reads[UserData] = Json.reads[UserData]
-    implicit val userDataReads:Reads[User] = Json.reads[User]
+    // implicit val userDataReads:Reads[User] = Json.reads[User]
     implicit val ResourceReads:Reads[Resource] = Json.reads[Resource]
     implicit val ResourceWrites:Writes[Resource] = Json.writes[Resource]
 

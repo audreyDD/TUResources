@@ -15,14 +15,8 @@ body {
     align-items: center;
     height: 100vh;
 } */
-#create-user-section {
-    width: 300px;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
+#create-user-section,
 #login-section {
     width: 300px;
     background: white;
@@ -30,6 +24,14 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+#currentResource {
+    color: #fff;
+    text-align: center;
+    font-size: 40px;
+}
+
+
 
 h2 {
     color: maroon;
@@ -109,27 +111,89 @@ button:hover {
     cursor: pointer;
 }
 table {
-    width: 100%;
+    width: 150%;
+    max-width: 1200px;
+    margin: 0 auto;
     border-collapse: collapse;
     margin-bottom: 20px;
+    /* overflow: hidden; */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #fff; 
+    border-radius: 30px;
+}
+
+#backToHomePage {
+    top: 20px;
+    right: 20px;
+    background-color: #fff;
+    color: #723130;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    
+}
+
+th, td {
+    border: 1px solid #fff;
+    padding: 20px;
+    text-align: left;
+    white-space: nowrap;
+    font-size: 18px;
 }
 
 th {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+    background-color: #4b1d1d;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
 }
+
 td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+    background-color: #723130;
     color: white;
 }
 
-th {
-    background-color: #f2f2f2;
+tr:hover {
+    background-color: #572525;
 }
 
-tr:hover {
-    background-color: #4b1d1d;
+/* Add some spacing between cells and a subtle border-radius */
+td:not(:last-child),
+th:not(:last-child) {
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff;
 }
+
+/* Add a subtle transition effect */
+th, td {
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for table cells */
+td:hover {
+    background-color: #4b1d1d;
+    color: #fff;
+}
+
+
+#schedule-page {
+    color: #fff;
+    text-align: center;
+    font-size: 40px;
+}
+
+
+/* #top-right-image-container {
+    position: fixed; 
+    top: 20px; 
+    right: 20px; 
+}
+
+#top-right-image {
+    width: 100px; 
+    height: 100px; 
+    border-radius: 50%; 
+  
+} */
+

@@ -27,6 +27,13 @@ function login() {
         }
     })
 }
+
+function goToCreateUser(){
+    document.getElementById("login-section").hidden = true;
+    document.getElementById("create-user-section").hidden = false;
+
+}
+
 function createUser() {
     const username = document.getElementById("username-create").value;
     const password = document.getElementById("password-create").value;
@@ -37,7 +44,7 @@ function createUser() {
         body: JSON.stringify({ username, password })
     }).then(res => res.json()).then(data => {
         if(data) {
-            document.getElementById("login-section").hidden = true;
+            // document.getElementById("login-section").hidden = true;
             document.getElementById("create-user-section").hidden = true;
             document.getElementById('home-page').style.display = 'flex';
             document.getElementById("logout").hidden = false;
@@ -81,7 +88,7 @@ function openCategory(category) {
             document.getElementById("resource-page").hidden = false
             
             let trSourceHeader = document.createElement("tr")
-            let sourceHeaders = ["Resouce", "Description", "Hours"]
+            let sourceHeaders = ["Resouce", "Description", "Hours", "Link"]
 
             for(const h of sourceHeaders) {
                 let txtNode = document.createTextNode(h)
