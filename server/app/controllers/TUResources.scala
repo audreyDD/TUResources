@@ -29,6 +29,18 @@ class TUResources @Inject()(protected val dbConfigProvider: DatabaseConfigProvid
     implicit val ResourceReads:Reads[Resource] = Json.reads[Resource]
     implicit val ResourceWrites:Writes[Resource] = Json.writes[Resource]
 
+    def populate:Unit={
+        val resourceIds = Array(3,6,5,7,11)
+        resourceIds.foreach(res=>
+            for(day <- 1 to 31){
+                for(hour <- 0 to 23){
+                    var time="2023-12-"+day+" "+hour+":00:00"
+                    model.requestApp(res,time)
+                }
+            }
+        )
+    }
+
     def withJsonBody[A](f: A => Future[Result])(implicit request: Request[AnyContent], reads: Reads[A]) = {
         request.body.asJson.map { body =>
             Json.fromJson[A](body) match {

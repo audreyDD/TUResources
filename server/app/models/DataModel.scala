@@ -5,6 +5,8 @@ import scala.concurrent.ExecutionContext
 import models.Tables._
 import scala.concurrent.Future
 import models.UserData._
+import java.sql.Timestamp._
+import java.sql.Timestamp
 
 class DataModel(db: Database)(implicit ec: ExecutionContext) {
     def validateUser(username: String, password: String): Future[Option[Int]] = {
@@ -13,7 +15,25 @@ class DataModel(db: Database)(implicit ec: ExecutionContext) {
         matches.map(userRows => userRows.headOption.flatMap { userRow =>
             Some(userRow.id)
         })
-        
+    }
+    def toTimestamp(time:String):Timestamp = {
+      val start = 1701388800000L  //time in milliseconds as of december 1st 12:00am
+      //do conversions
+      new Timestamp(start)
+    }
+
+    def requestApp(resource:Int,timestamp:String):Unit = {
+      println("requestApp() in DataModel")
+        val matches = db.run(Appointments.filter(appRow => appRow.resId === resource.toString && appRow.time === Some(toTimestamp(timestamp))).result)
+        matches.flatMap { appRows =>
+            if (appRows.isEmpty) {
+              db.run(Appointments += AppointmentsRow(-1,"",resource.toString,Some(toTimestamp(timestamp))))
+                .flatMap { addCount => 
+                  if (addCount > 0) println("success")
+                  else println("failed insert")
+                }
+            } else println("invalid resource/time slot")
+        }
     }
 
     def getResources(category:String):Future[Seq[Resource]] = {

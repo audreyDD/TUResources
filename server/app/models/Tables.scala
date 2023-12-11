@@ -22,18 +22,19 @@ trait Tables {
    *  @param appId Database column app_id SqlType(serial), AutoInc, PrimaryKey
    *  @param reqId Database column req_id SqlType(varchar), Length(20,true)
    *  @param resId Database column res_id SqlType(varchar), Length(2000,true)
-   *  @param time Database column time SqlType(timestamp), Default(None) */
-  case class AppointmentsRow(appId: Int, reqId: String, resId: String, time: Option[java.sql.Timestamp] = None)
+   *  @param time Database column time SqlType(timestamp), Default(None)
+   *  @param available Database column available SqlType(bool), Default(Some(true)) */
+  case class AppointmentsRow(appId: Int, reqId: String, resId: String, time: Option[java.sql.Timestamp] = None, available: Option[Boolean] = Some(true))
   /** GetResult implicit for fetching AppointmentsRow objects using plain SQL queries */
-  implicit def GetResultAppointmentsRow(implicit e0: GR[Int], e1: GR[String], e2: GR[Option[java.sql.Timestamp]]): GR[AppointmentsRow] = GR{
+  implicit def GetResultAppointmentsRow(implicit e0: GR[Int], e1: GR[String], e2: GR[Option[java.sql.Timestamp]], e3: GR[Option[Boolean]]): GR[AppointmentsRow] = GR{
     prs => import prs._
-    AppointmentsRow.tupled((<<[Int], <<[String], <<[String], <<?[java.sql.Timestamp]))
+    AppointmentsRow.tupled((<<[Int], <<[String], <<[String], <<?[java.sql.Timestamp], <<?[Boolean]))
   }
   /** Table description of table appointments. Objects of this class serve as prototypes for rows in queries. */
   class Appointments(_tableTag: Tag) extends profile.api.Table[AppointmentsRow](_tableTag, "appointments") {
-    def * = (appId, reqId, resId, time).<>(AppointmentsRow.tupled, AppointmentsRow.unapply)
+    def * = (appId, reqId, resId, time, available).<>(AppointmentsRow.tupled, AppointmentsRow.unapply)
     /** Maps whole row to an option. Useful for outer joins. */
-    def ? = ((Rep.Some(appId), Rep.Some(reqId), Rep.Some(resId), time)).shaped.<>({r=>import r._; _1.map(_=> AppointmentsRow.tupled((_1.get, _2.get, _3.get, _4)))}, (_:Any) =>  throw new Exception("Inserting into ? projection not supported."))
+    def ? = ((Rep.Some(appId), Rep.Some(reqId), Rep.Some(resId), time, available)).shaped.<>({r=>import r._; _1.map(_=> AppointmentsRow.tupled((_1.get, _2.get, _3.get, _4, _5)))}, (_:Any) =>  throw new Exception("Inserting into ? projection not supported."))
 
     /** Database column app_id SqlType(serial), AutoInc, PrimaryKey */
     val appId: Rep[Int] = column[Int]("app_id", O.AutoInc, O.PrimaryKey)
@@ -43,6 +44,8 @@ trait Tables {
     val resId: Rep[String] = column[String]("res_id", O.Length(2000,varying=true))
     /** Database column time SqlType(timestamp), Default(None) */
     val time: Rep[Option[java.sql.Timestamp]] = column[Option[java.sql.Timestamp]]("time", O.Default(None))
+    /** Database column available SqlType(bool), Default(Some(true)) */
+    val available: Rep[Option[Boolean]] = column[Option[Boolean]]("available", O.Default(Some(true)))
   }
   /** Collection-like TableQuery object for table Appointments */
   lazy val Appointments = new TableQuery(tag => new Appointments(tag))

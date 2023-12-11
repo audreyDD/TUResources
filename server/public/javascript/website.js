@@ -182,7 +182,6 @@ function schedule(category, resourceName) {
 
     document.getElementsByTagName("TITLE")[0].text="Scheduling";
     console.log(resourceName)
-    document.getElementById("logout").hidden = true
     document.getElementById("home-page").hidden = true
     document.getElementById("resource-page").hidden = true
     document.getElementById("schedule-page").hidden = false
