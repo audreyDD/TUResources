@@ -8,13 +8,15 @@
     <div id="top-right-image-container">
         <img src="/server/public/images/trinity.webp" alt="TU image" id="top-right-image">
     </div> -->
-  
+  <div id="message" hidden></div>
   
     <div id="home-page" hidden>
         <h3>Trinity University Resources</h3>
         <div class="clickable-div" onclick="openCategory('Academic')">Academic</div>
         <div class="clickable-div" onclick="openCategory('Health')">Health</div>
         <div class="clickable-div" onclick="openCategory('Safety')">Safety</div>
+        
+        <button id="logout" onclick="logout()">Logout</button>
     </div>
     
 
@@ -26,7 +28,7 @@
         Password: <input type="password" name="password" id="password-login"></input>
         <br>
         <button onclick="login()">Login</button>
-        <button onClick= "goToCreateUser()"> Create User</button>
+        <button onClick="goToCreateUser()">Create User</button>
 
         
     </div>
@@ -39,6 +41,7 @@
         Password: <input type="password" name="password" id="password-create"></input>
         <br>
         <button onclick="createUser()">Create User</button>
+        <button onClick="goToLogin()">Login</button>
     </div>
 
     <div id="resource-page" hidden>
@@ -54,8 +57,6 @@
         <table id="week-table"></table>
     </div>
 
-
-    <div id="logout" hidden></div>
 
     <input type="hidden" id="csrfToken" value="@helper.CSRF.getToken.value">
     <input type="hidden" id="validateRoute" value="@routes.TUResources.validateTU">

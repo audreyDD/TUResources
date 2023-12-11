@@ -15,9 +15,25 @@ body {
     align-items: center;
     height: 100vh;
 } */
+#message{
+    text-align: center;
+    width: 300px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position:absolute;
+  left: 0; right: 0; top:5%;
+  margin: auto;
+  height: 20px;
+}
 
 #create-user-section,
 #login-section {
+    /*justify-content: center;
+    align-items: center;
+    display:list-item;*/
+    
     width: 300px;
     background: white;
     padding: 20px;
@@ -122,7 +138,7 @@ table {
     border-radius: 30px;
 }
 
-#backToHomePage {
+#logout,#backToHomePage {
     top: 20px;
     right: 20px;
     background-color: #fff;
