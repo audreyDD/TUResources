@@ -84,7 +84,8 @@ function showHomePage() {
 
 
 function openCategory(category) {
-    document.getElementById("message").hidden=true;
+    document.getElementById("message").hidden=true
+    document.getElementById("schedule-page").hidden = true
     console.log("openCategory in js");
     hideHomePage()
     const resourceTable = document.getElementById("resource-table")
@@ -94,6 +95,7 @@ function openCategory(category) {
     header.innerHTML = ""
     const categoryName = document.createTextNode(category)
     header.appendChild(categoryName)
+
 
     fetch(openCategoryRoute, {
         method: 'POST',
@@ -164,6 +166,10 @@ function back() {
     document.getElementById("resource-page").hidden = true
 }
 
+function backToCategory(category) {
+    openCategory(category)
+}
+
 function hideHomePage() {
     document.getElementById("message").hidden=true;
     document.getElementById("home-page").style.display = 'none'
@@ -180,6 +186,11 @@ function schedule(category, resourceName) {
     document.getElementById("home-page").hidden = true
     document.getElementById("resource-page").hidden = true
     document.getElementById("schedule-page").hidden = false
+
+    const backBtn = document.getElementById("backBtn")
+    backBtn.innerText = ""
+    backBtn.appendChild(document.createTextNode("Back to " + category + " page"))
+    backBtn.setAttribute("onclick", `backToCategory('${category}')`)
 
     fetch(scheduleRoute, {
         method: 'POST',
