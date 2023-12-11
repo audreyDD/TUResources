@@ -53,10 +53,32 @@
     </div>
 
     <div id="schedule-page" hidden>
-        <h2>Book an appointment!</h2>
+        <h2 id="currentResource"></h2>
         <button id="backBtn"></button>
-        <table id="week-table"></table>
+        <table id="schedule-table">
+            <thead>
+                <tr>
+                    <th>Time Slot</th>
+                    <th>Status</th>
+                    <!-- Add more columns if needed -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dummy data rows -->
+                <tr>
+                    <td>9:00 AM - 10:00 AM</td>
+                    <td class="available">Available</td>
+                </tr>
+                <tr>
+                    <td>10:00 AM - 11:00 AM</td>
+                    <td class="booked">Booked</td>
+                </tr>
+                <!-- Add more rows with dummy data as needed -->
+            </tbody>
+        </table>
     </div>
+    
+    
 
 
     <input type="hidden" id="csrfToken" value="@helper.CSRF.getToken.value">

@@ -22,4 +22,4 @@ GET        /homePage                     controllers.TUResources.home
 GET        /academic                     controllers.TUResources.academic
 GET        /health                       controllers.TUResources.health
 GET        /financial                    controllers.TUResources.financial
-GET        /emergency                    controllers.TUResources.emergency
+GET        /emergency                    controllers.TUResources.emergency 

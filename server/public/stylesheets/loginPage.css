@@ -138,7 +138,7 @@ table {
     border-radius: 30px;
 }
 
-#logout,#backToHomePage {
+#backToHomePage {
     top: 20px;
     right: 20px;
     background-color: #fff;
@@ -149,6 +149,18 @@ table {
     cursor: pointer;
     
 }
+
+#logout {
+    top: 20px;
+    right: 20px;
+    background-color: #fff;
+    color: #723130;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
 
 th, td {
     border: 1px solid #fff;
@@ -174,19 +186,16 @@ tr:hover {
     background-color: #572525;
 }
 
-/* Add some spacing between cells and a subtle border-radius */
 td:not(:last-child),
 th:not(:last-child) {
     border-right: 1px solid #fff;
     border-bottom: 1px solid #fff;
 }
 
-/* Add a subtle transition effect */
 th, td {
     transition: background-color 0.3s ease;
 }
 
-/* Hover effect for table cells */
 td:hover {
     background-color: #4b1d1d;
     color: #fff;
@@ -198,6 +207,75 @@ td:hover {
     text-align: center;
     font-size: 40px;
 }
+#backBtn {
+    background-color: #4b1d1d;
+    color: white;
+    padding: 15px 30px; /* Adjust padding to make the button bigger */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 20px; 
+}
+
+#backBtn:hover {
+    background-color: #3c1616;
+}
+
+#schedule-table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #fff;
+    border-radius: 10px;
+}
+
+#schedule-table th, #schedule-table td {
+    border: 1px solid #fff;
+    padding: 15px;
+    text-align: center;
+    font-size: 18px;
+}
+
+#schedule-table th {
+    background-color: #4b1d1d;
+    color: white;
+}
+
+#schedule-table td {
+    cursor: pointer;
+}
+
+#schedule-table .available {
+    background-color: #4b1d1d;
+    color: white;
+    border-radius: 5px;
+}
+
+#schedule-table .booked {
+    background-color: #723130;
+    color: white;
+}
+
+#schedule-table tr:hover {
+    background-color: #572525;
+}
+
+#schedule-table td:not(:last-child),
+#schedule-table th:not(:last-child) {
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+}
+
+#schedule-table th, #schedule-table td {
+    transition: background-color 0.3s ease;
+}
+
+#schedule-table .available:hover {
+    background-color: #3c1616;
+}
+
 
 
 /* #top-right-image-container {
