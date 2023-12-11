@@ -80,6 +80,7 @@ function showHomePage() {
     document.getElementById('login-section').style.display = 'none';
     document.getElementById('create-user-section').style.display = 'none';
     document.getElementById('home-page').style.display = 'flex';
+    document.getElementById("logout").hidden = false;
 }
 
 
@@ -164,6 +165,7 @@ function back() {
     document.getElementsByTagName("TITLE")[0].text="Resources";
     document.getElementById("home-page").style.display = 'flex'
     document.getElementById("resource-page").hidden = true
+    document.getElementById("logout").hidden = false;
 }
 
 function backToCategory(category) {
